@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { footerLegal, footerQuickLinks, socialLinks } from '../../data/navigation'
 import Button from '../ui/Button'
 import Container from '../ui/Container'
@@ -51,12 +52,12 @@ export default function Footer() {
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
               {footerQuickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-white/80 transition-colors hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

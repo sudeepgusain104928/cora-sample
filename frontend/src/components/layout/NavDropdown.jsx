@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function NavDropdown({ label, href, items = [] }) {
   const [open, setOpen] = useState(false)
@@ -9,15 +10,15 @@ export default function NavDropdown({ label, href, items = [] }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <a
-        href={href}
+      <Link
+        to={href}
         className="flex items-center gap-1 px-3 py-4 text-sm font-medium text-cora-navy transition-colors hover:text-cora-blue"
         aria-expanded={open}
         aria-haspopup="true"
       >
         {label}
         <ChevronIcon open={open} />
-      </a>
+      </Link>
       {items.length > 0 && open && (
         <div className="absolute left-0 top-full z-50 min-w-[220px] rounded-md border border-gray-100 bg-white py-2 shadow-xl">
           <ul>

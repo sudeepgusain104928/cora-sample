@@ -8,7 +8,7 @@ export function withReduxProvider(Story, context) {
   const preloadedState = context.parameters?.redux?.preloadedState
   const store = useMemo(
     () => createAppStore(preloadedState),
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- reset store when story changes
+    // context.storyId ensures the store resets when the active story changes
     [context.storyId, preloadedState],
   )
 

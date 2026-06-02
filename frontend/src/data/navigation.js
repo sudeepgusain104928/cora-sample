@@ -1,7 +1,7 @@
 export const primaryNav = [
   {
     label: 'What We Treat',
-    href: '#treat',
+    href: '/services',
     children: [
       'Neck',
       'Shoulder',
@@ -20,7 +20,7 @@ export const primaryNav = [
   },
   {
     label: 'How We Can Help',
-    href: '#help',
+    href: '/services',
     children: [
       'Physical Therapy',
       'Occupational Therapy',
@@ -34,7 +34,7 @@ export const primaryNav = [
   },
   {
     label: 'Patients',
-    href: '#patients',
+    href: '/patient-resources',
     children: [
       'What To Expect',
       'Direct Patient Access',
@@ -45,12 +45,12 @@ export const primaryNav = [
   },
   {
     label: 'About',
-    href: '#about',
+    href: '/about',
     children: ['Leadership Team', 'Mission + Values', 'Physicians', 'Partnerships'],
   },
   {
     label: 'Resources',
-    href: '#resources',
+    href: '/patient-resources',
     children: ['Blogs', 'News', 'Podcast', 'Orthopaedic Residency'],
   },
   {
@@ -66,20 +66,20 @@ export const primaryNav = [
 ]
 
 export const utilityNav = [
-  { label: 'Locations', href: '#locations' },
+  { label: 'Locations', href: '/locations' },
   { label: 'Pay Bill', href: '#pay-bill' },
   { label: 'Apply Now', href: '#apply', highlight: true },
 ]
 
 export const footerQuickLinks = [
-  { label: 'Contact Us', href: '#' },
-  { label: 'Physicians', href: '#' },
-  { label: 'Telehealth', href: '#' },
-  { label: 'Patients', href: '#' },
-  { label: 'Patient Forms', href: '#' },
+  { label: 'Contact Us', href: '/contact' },
+  { label: 'Physicians', href: '/about' },
+  { label: 'Telehealth', href: '/services' },
+  { label: 'Patients', href: '/patient-resources' },
+  { label: 'Patient Forms', href: '/patient-resources' },
   { label: 'Careers', href: '#careers' },
-  { label: 'Partners', href: '#' },
-  { label: 'Student Resources', href: '#' },
+  { label: 'Partners', href: '/about' },
+  { label: 'Student Resources', href: '/patient-resources' },
 ]
 
 export const footerLegal = [

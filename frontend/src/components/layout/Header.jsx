@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { primaryNav, utilityNav } from '../../data/navigation'
 import Button from '../ui/Button'
 import Container from '../ui/Container'
@@ -13,12 +14,12 @@ export default function Header() {
     <header className="sticky top-0 z-40 bg-white shadow-sm">
       <Container>
         <div className="flex items-center justify-between gap-4 py-3 lg:py-4">
-          <a href="/" className="flex shrink-0 items-center gap-2">
+          <Link to="/" className="flex shrink-0 items-center gap-2">
             <CoraLogo />
             <span className="hidden text-xl font-bold text-cora-navy sm:inline">
               CORA Physical Therapy
             </span>
-          </a>
+          </Link>
 
           <div className="hidden items-center gap-2 lg:flex">
             <a
@@ -27,7 +28,7 @@ export default function Header() {
             >
               {PHONE}
             </a>
-            <Button variant="secondary" size="sm" href="#contact">
+            <Button variant="secondary" size="sm" href="/contact">
               Contact
             </Button>
           </div>
@@ -68,8 +69,8 @@ export default function Header() {
             ))}
             {utilityNav.map((item) => (
               <li key={item.label}>
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className={`block px-3 py-4 text-sm font-medium transition-colors ${
                     item.highlight
                       ? 'text-cora-orange hover:text-orange-600'
@@ -77,7 +78,7 @@ export default function Header() {
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -101,13 +102,13 @@ function MobileNav({ onClose }) {
         <ul className="space-y-1">
           {[...primaryNav, ...utilityNav].map((item) => (
             <li key={item.label}>
-              <a
-                href={item.href}
+              <Link
+                to={item.href}
                 onClick={onClose}
                 className="block rounded-md px-3 py-2.5 text-cora-navy hover:bg-cora-sky"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -115,7 +116,7 @@ function MobileNav({ onClose }) {
           <a href={`tel:${PHONE.replace(/\./g, '')}`} className="block font-semibold text-cora-blue">
             {PHONE}
           </a>
-          <Button variant="secondary" href="#contact" className="w-full">
+          <Button variant="secondary" href="/contact" className="w-full">
             Contact
           </Button>
         </div>

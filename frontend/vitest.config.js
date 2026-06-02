@@ -17,7 +17,7 @@ export default defineConfig({
     name: 'unit',
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.js'],
-    include: ['src/**/*.{test,spec}.{js,jsx}'],
+    include: ['src/**/*.{test,spec}.{js,jsx,ts,tsx}'],
     exclude: ['**/node_modules/**', 'storybook/**'],
     globals: false,
   },
