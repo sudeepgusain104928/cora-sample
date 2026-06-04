@@ -28,6 +28,14 @@
       "options": {
         "cwd": "{projectRoot}"
       }
+    },
+    "build": {
+      "command": "node -e \"require('esbuild').build({entryPoints:['src/server.js'],bundle:true,platform:'node',format:'esm',outfile:'dist/server.js',packages:'external'})\"",
+      "options": {
+        "cwd": "{projectRoot}"
+      },
+      "cache": true,
+      "outputs": ["{projectRoot}/dist"]
     }
   },
   "tags": ["type:app", "scope:server"]

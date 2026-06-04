@@ -5,6 +5,7 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
+    "build": "node -e \"require('esbuild').build({entryPoints:['src/server.js'],bundle:true,platform:'node',format:'esm',outfile:'dist/server.js',packages:'external'})\"",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "test": "vitest run",
