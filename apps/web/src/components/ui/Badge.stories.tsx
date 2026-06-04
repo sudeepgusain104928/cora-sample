@@ -11,7 +11,7 @@ export default meta
 type Story = StoryObj<typeof Badge>
 
 export const Patient: Story = {
-  args: { role: 'client' },
+  args: { role: 'patient' },
 }
 
 export const Administrator: Story = {
