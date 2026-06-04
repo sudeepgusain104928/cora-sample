@@ -14,14 +14,15 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@cora/ui": "*",
     "@reduxjs/toolkit": "^2.12.0",
     "@tailwindcss/vite": "^4.3.0",
+    "esbuild": "0.28.0",
     "leaflet": "^1.9.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.16.0",
-    "@cora/ui": "*",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
@@ -44,7 +45,7 @@
     "msw": "^2.14.6",
     "typescript": "~5.7",
     "typescript-eslint": "^8.60.1",
-    "vite": "^5.4.21",
+    "vite": "^8.0.16",
     "vitest": "^4.1.8"
   }
 }
