@@ -27,25 +27,10 @@ export type ButtonSize = keyof typeof sizes
  * Accepts all native `<button>` and `<a>` attributes in addition to the
  * component-specific props listed below.
  */
-export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    AnchorHTMLAttributes<HTMLAnchorElement> {
-  /**
-   * Visual style variant of the button.
-   * @default 'primary'
-   */
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant
-  /**
-   * Size preset for the button.
-   * @default 'md'
-   */
   size?: ButtonSize
-  /**
-   * When provided the component renders as an `<a>` tag instead of a `<button>`.
-   * Use for navigation links that look like buttons.
-   */
   href?: string
-  /** Button label or content. */
   children?: React.ReactNode
 }
 

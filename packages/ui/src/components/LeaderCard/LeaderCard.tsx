@@ -1,4 +1,4 @@
-import type { Leader } from '@/types'
+import type { Leader } from '../../types'
 
 /**
  * Props for the `LeaderCard` component.

@@ -1,4 +1,4 @@
-import type { Clinic } from '@/types'
+import type { Clinic } from '../../types'
 
 function ArrowIcon() {
   return (
@@ -48,7 +48,7 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
         </div>
 
         <address className="mt-3 not-italic">
-          {clinic.address.map((line) => (
+          {clinic.address.map((line: string) => (
             <a
               key={line}
               href="#"
