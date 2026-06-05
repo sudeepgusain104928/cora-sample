@@ -32,13 +32,8 @@ const router = createBrowserRouter([
       { path: '/condition/:slug', element: <ConditionPage /> },
       { path: '/what-we-treat', element: <WhatWeTreat /> },
       { path: '/how-we-can-help', element: <HowWeCanHelp /> },
+      { path: '/login', element: <LoginPage /> },
     ],
-  },
-
-  // ── Login (standalone, no layout) ──────────────────────────────────────────
-  {
-    path: '/login',
-    element: <LoginPage />,
   },
 
   // ── Protected: client role ──────────────────────────────────────────────────

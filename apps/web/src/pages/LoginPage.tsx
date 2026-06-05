@@ -50,14 +50,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="grid min-h-screen place-items-center px-4 py-12">
+    <div className="bg-white">
+      <div className="grid min-h-[calc(100vh-200px)] place-items-center px-4 py-12">
         <div className="w-full max-w-md">
-          {/* Brand */}
-          <div className="mb-8 text-center">
-            <span className="text-3xl font-bold text-cora-navy">CORA</span>
-            <span className="ml-1 text-3xl font-light text-cora-sky">Health</span>
-            <p className="mt-2 text-sm text-gray-500">Sign in to your patient portal</p>
+          <div className="mb-6 text-center">
+            <p className="text-sm text-gray-500">Sign in to your patient portal</p>
           </div>
 
           <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-black/5">
@@ -133,9 +130,6 @@ export default function LoginPage() {
             </form>
           </div>
 
-          <p className="mt-6 text-center text-xs text-gray-400">
-            &copy; {new Date().getFullYear()} CORA Health. All rights reserved.
-          </p>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ build/
 .env
 .env.*
 !.env.example
+.secrets
 
 # Logs
 logs
@@ -44,3 +45,5 @@ SPEC/
 .github/instructions/
 .github/copilot-instructions.md
 # === end AIRE SDLC Agentic Framework ===
+
+.claude/
