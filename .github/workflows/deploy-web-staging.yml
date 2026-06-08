@@ -1,6 +1,7 @@
 name: Staging - Web App Deploy
 
 on:
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
   push:
     branches:
       - 'release/web-v*' # Triggers ONLY on web release branches
@@ -14,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Nx is smart: it will read the root, but only build the web target
       - name: Build Web App
