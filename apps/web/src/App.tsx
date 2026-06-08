@@ -9,6 +9,7 @@ const HomePage        = lazy(() => import('./pages/HomePage'))
 const ConditionPage   = lazy(() => import('./pages/ConditionPage'))
 const WhatWeTreat     = lazy(() => import('./pages/WhatWeTreat'))
 const HowWeCanHelp    = lazy(() => import('./pages/HowWeCanHelp'))
+const FindLocationPage = lazy(() => import('./pages/FindLocationPage'))
 const LoginPage       = lazy(() => import('./pages/LoginPage'))
 const ClientDashboard = lazy(() => import('./pages/client/Dashboard'))
 const AdminDashboard  = lazy(() => import('./pages/admin/Dashboard'))
@@ -40,6 +41,9 @@ const router = createBrowserRouter([
       { path: ROUTES.LOGIN, element: routeSuspense(<LoginPage />) },
     ],
   },
+
+  // ── Standalone pages (own Header + Footer) ──────────────────────────────────
+  { path: ROUTES.LOCATIONS, element: routeSuspense(<FindLocationPage />) },
 
   // ── Protected: client role ──────────────────────────────────────────────────
   {

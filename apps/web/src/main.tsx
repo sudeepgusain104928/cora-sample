@@ -5,6 +5,8 @@ import { store } from './store'
 import App from './App'
 import './index.css'
 
+console.info(`Cora Health v${__APP_VERSION__}`)
+
 const root = document.getElementById('root')
 if (!root) throw new Error('Root element not found')
 
