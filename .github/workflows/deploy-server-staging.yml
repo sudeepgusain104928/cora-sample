@@ -1,0 +1,25 @@
+name: Staging - Server Deploy
+
+on:
+  push:
+    branches:
+      - 'release/server-v*' # Triggers ONLY on server release branches
+    paths:
+      - 'apps/server/**'
+      - 'package.json'
+
+jobs:
+  stage-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Server
+        run: |
+          npm ci
+          npx nx build @cora/server
+
+      - name: Trigger Render Server Staging Webhook
+        run: |
+          curl -X POST "${{ secrets.RENDER_STAGING_BACKEND_HOOK }}"
