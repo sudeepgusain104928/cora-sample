@@ -1,3 +1,4 @@
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import AnnouncementBar from '../components/layout/AnnouncementBar'
 import Footer from '../components/layout/Footer'
@@ -6,7 +7,14 @@ import Button from '../components/ui/Button'
 import Container from '../components/ui/Container'
 import { getCondition } from '../data/conditions'
 import type { Condition } from '../data/conditions'
-import type { ReactNode } from 'react'
+import {
+  CheckIcon,
+  RunnerIcon,
+  CalendarIcon,
+  CirclePlusIcon,
+  ShieldCheckIcon,
+} from '@cora/ui'
+import type { IconProps } from '@cora/ui'
 
 export default function ConditionPage() {
   const { slug = '' } = useParams<{ slug: string }>()
@@ -176,13 +184,13 @@ const ctaCards = [
     title: 'No Referral?',
     subtitle: 'No Worries. Start therapy now.',
     href: '#appointment',
-    icon: ReferralIcon,
+    icon: CirclePlusIcon,
   },
   {
     title: 'Schedule a Free\nScreening',
     subtitle: '',
     href: '#appointment',
-    icon: ScreeningIcon,
+    icon: ShieldCheckIcon,
   },
 ]
 
@@ -190,7 +198,7 @@ interface CtaCardData {
   title: string
   subtitle: string
   href: string
-  icon: () => ReactNode
+  icon: React.ComponentType<IconProps>
 }
 
 function CtaCard({ title, subtitle, href, icon: Icon }: CtaCardData) {
@@ -237,58 +245,6 @@ function NotFound({ slug }: { slug: string }) {
   )
 }
 
-/* ---------- icons ---------- */
-
 function Dot() {
   return <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-cora-teal" />
-}
-
-function CheckIcon() {
-  return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-    </svg>
-  )
-}
-
-function RunnerIcon({ className = '', flip = false }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      style={flip ? { transform: 'scaleX(-1)' } : undefined}
-    >
-      <circle cx="14" cy="4" r="2" />
-      <path d="M13.5 7.5c-.7 0-1.3.4-1.7 1L9.3 13l-3.1 1.2a1 1 0 0 0 .7 1.9l3.6-1.4c.4-.2.7-.5.9-.9l.5-1 1.6 1.7-1.7 4.6a1 1 0 0 0 1.9.7l1.9-5.1a1.2 1.2 0 0 0-.3-1.3l-1.8-1.8.6-2 .9 1.6c.2.3.5.5.9.6l2.4.5a1 1 0 0 0 .4-2l-2-.4-1.5-2.6a2 2 0 0 0-1.7-1z" />
-    </svg>
-  )
-}
-
-function CalendarIcon() {
-  return (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
-      <rect x="3" y="5" width="18" height="16" rx="2" />
-      <path strokeLinecap="round" d="M3 9h18M8 3v4M16 3v4" />
-    </svg>
-  )
-}
-
-function ReferralIcon() {
-  return (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18M3 12h18" />
-      <circle cx="12" cy="12" r="9" />
-    </svg>
-  )
-}
-
-function ScreeningIcon() {
-  return (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
-    </svg>
-  )
 }

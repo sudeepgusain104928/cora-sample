@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { screen } from '@testing-library/react'
 import { Route, Routes } from 'react-router-dom'
 import { renderWithStore } from '@/test/test-utils'
+import { ROUTES } from '@/constants/routes'
 import { ProtectedRoute } from './ProtectedRoute'
 
 const authenticatedClient = {
@@ -32,7 +33,7 @@ function withRoutes(requiredRole: 'client' | 'admin') {
       <Route element={<ProtectedRoute requiredRole={requiredRole} />}>
         <Route path="/protected" element={<div>Protected content</div>} />
       </Route>
-      <Route path="/login" element={<div>Login page</div>} />
+      <Route path={ROUTES.LOGIN} element={<div>Login page</div>} />
     </Routes>
   )
 }

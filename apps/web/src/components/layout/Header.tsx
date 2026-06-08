@@ -2,18 +2,9 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '@/store/hooks'
 import { logout } from '@/store/slices/authSlice'
+import { HEADER_NAV_ITEMS, ROUTES } from '@/constants/routes'
 
-interface NavItem {
-  label: string
-  to: string
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'What We Treat', to: '/what-we-treat' },
-  { label: 'How We Can Help', to: '/how-we-can-help' },
-  { label: 'Locations', to: '/#locations' },
-]
+const NAV_ITEMS = HEADER_NAV_ITEMS
 
 export default function Header() {
   const dispatch = useAppDispatch()
@@ -64,7 +55,7 @@ export default function Header() {
             </button>
           ) : (
             <NavLink
-              to="/login"
+              to={ROUTES.LOGIN}
               className="rounded-full bg-cora-orange px-5 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-orange-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cora-orange focus-visible:ring-offset-2"
             >
               Login
@@ -129,7 +120,7 @@ export default function Header() {
                 </button>
               ) : (
                 <NavLink
-                  to="/login"
+                  to={ROUTES.LOGIN}
                   onClick={() => setMenuOpen(false)}
                   className="block rounded-full bg-cora-orange px-3 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-orange-600"
                 >

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { ChevronLeftIcon, ChevronRightIcon } from '@cora/ui'
 
 export interface CarouselImage {
   src: string
@@ -134,9 +135,7 @@ export default function ImageCarousel({
             aria-label="Previous image"
             className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/80 text-cora-navy opacity-0 shadow-md backdrop-blur transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-cora-navy group-hover:opacity-100"
           >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
+            <ChevronLeftIcon className="h-5 w-5" />
           </button>
           <button
             type="button"
@@ -144,9 +143,7 @@ export default function ImageCarousel({
             aria-label="Next image"
             className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/80 text-cora-navy opacity-0 shadow-md backdrop-blur transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-cora-navy group-hover:opacity-100"
           >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <ChevronRightIcon className="h-5 w-5" />
           </button>
 
           {/* dot indicators */}

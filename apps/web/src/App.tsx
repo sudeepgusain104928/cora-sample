@@ -1,16 +1,17 @@
-import React, { Suspense } from 'react'
+import { Suspense, lazy, type ReactElement } from 'react'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { PublicLayout } from './components/layout/Layout'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
+import { ROUTES } from '@/constants/routes'
 
 // All pages are lazy-loaded — each route gets its own JS chunk
-const HomePage        = React.lazy(() => import('./pages/HomePage'))
-const ConditionPage   = React.lazy(() => import('./pages/ConditionPage'))
-const WhatWeTreat     = React.lazy(() => import('./pages/WhatWeTreat'))
-const HowWeCanHelp    = React.lazy(() => import('./pages/HowWeCanHelp'))
-const LoginPage       = React.lazy(() => import('./pages/LoginPage'))
-const ClientDashboard = React.lazy(() => import('./pages/client/Dashboard'))
-const AdminDashboard  = React.lazy(() => import('./pages/admin/Dashboard'))
+const HomePage        = lazy(() => import('./pages/HomePage'))
+const ConditionPage   = lazy(() => import('./pages/ConditionPage'))
+const WhatWeTreat     = lazy(() => import('./pages/WhatWeTreat'))
+const HowWeCanHelp    = lazy(() => import('./pages/HowWeCanHelp'))
+const LoginPage       = lazy(() => import('./pages/LoginPage'))
+const ClientDashboard = lazy(() => import('./pages/client/Dashboard'))
+const AdminDashboard  = lazy(() => import('./pages/admin/Dashboard'))
 
 function PageLoader() {
   return (
@@ -23,16 +24,20 @@ function PageLoader() {
   )
 }
 
+const routeSuspense = (element: ReactElement) => (
+  <Suspense fallback={<PageLoader />}>{element}</Suspense>
+)
+
 const router = createBrowserRouter([
   // ── Public routes (Header + Footer) ────────────────────────────────────────
   {
     element: <PublicLayout />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/condition/:slug', element: <ConditionPage /> },
-      { path: '/what-we-treat', element: <WhatWeTreat /> },
-      { path: '/how-we-can-help', element: <HowWeCanHelp /> },
-      { path: '/login', element: <LoginPage /> },
+      { path: ROUTES.HOME, element: routeSuspense(<HomePage />) },
+      { path: ROUTES.CONDITION, element: routeSuspense(<ConditionPage />) },
+      { path: ROUTES.WHAT_WE_TREAT, element: routeSuspense(<WhatWeTreat />) },
+      { path: ROUTES.HOW_WE_CAN_HELP, element: routeSuspense(<HowWeCanHelp />) },
+      { path: ROUTES.LOGIN, element: routeSuspense(<LoginPage />) },
     ],
   },
 
@@ -40,7 +45,7 @@ const router = createBrowserRouter([
   {
     element: <ProtectedRoute requiredRole="client" />,
     children: [
-      { path: '/client/dashboard', element: <ClientDashboard /> },
+      { path: ROUTES.CLIENT_DASHBOARD, element: routeSuspense(<ClientDashboard />) },
     ],
   },
 
@@ -48,7 +53,7 @@ const router = createBrowserRouter([
   {
     element: <ProtectedRoute requiredRole="admin" />,
     children: [
-      { path: '/admin/dashboard', element: <AdminDashboard /> },
+      { path: ROUTES.ADMIN_DASHBOARD, element: routeSuspense(<AdminDashboard />) },
     ],
   },
 
@@ -57,9 +62,5 @@ const router = createBrowserRouter([
 ])
 
 export default function App() {
-  return (
-    <Suspense fallback={<PageLoader />}>
-      <RouterProvider router={router} />
-    </Suspense>
-  )
+  return <RouterProvider router={router} />
 }

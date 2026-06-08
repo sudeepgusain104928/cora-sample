@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { NavChild } from '../../data/navigation'
+import { ChevronDownIcon } from '@cora/ui'
 
 interface NavDropdownProps {
   label: string
@@ -23,7 +24,7 @@ export default function NavDropdown({ label, href, items = [] }: NavDropdownProp
         aria-haspopup="true"
       >
         {label}
-        <ChevronIcon open={open} />
+        <ChevronDownIcon className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`} />
       </a>
       {items.length > 0 && open && (
         <div className="absolute left-0 top-full z-50 min-w-[220px] rounded-md border border-gray-100 bg-white py-2 shadow-xl">
@@ -49,20 +50,3 @@ export default function NavDropdown({ label, href, items = [] }: NavDropdownProp
   )
 }
 
-interface ChevronIconProps {
-  open: boolean
-}
-
-function ChevronIcon({ open }: ChevronIconProps) {
-  return (
-    <svg
-      className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  )
-}

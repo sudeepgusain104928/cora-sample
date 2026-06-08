@@ -2,35 +2,10 @@ import { Suspense, lazy, useMemo, useState } from 'react'
 import AnnouncementBar from '@/components/layout/AnnouncementBar'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
-import { ClinicCard, Container } from '@cora/ui'
+import { ClinicCard, Container, SearchIcon, LocateIcon, ChevronRightIcon } from '@cora/ui'
 import { clinics, locationStates } from '@/data/locations'
 
 const ClinicMap = lazy(() => import('@/components/ui/ClinicMap'))
-
-function SearchIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-    </svg>
-  )
-}
-
-function LocateIcon() {
-  return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
-      <circle cx="12" cy="12" r="3" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v3M12 19v3M2 12h3M19 12h3" />
-    </svg>
-  )
-}
-
-function ArrowIcon() {
-  return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-    </svg>
-  )
-}
 
 export default function FindLocationPage() {
   const [activeState, setActiveState] = useState<string | null>(null)
@@ -101,7 +76,7 @@ export default function FindLocationPage() {
                 className="inline-flex items-center gap-1 text-sm font-medium text-cora-blue hover:text-cora-navy"
               >
                 View All Locations
-                <ArrowIcon />
+                <ChevronRightIcon className="h-4 w-4" />
               </button>
             </div>
           </Container>

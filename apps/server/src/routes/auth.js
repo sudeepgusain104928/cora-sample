@@ -21,8 +21,6 @@ function safeUser(user) {
 router.post('/login', async (req, res) => {
   const { username, password } = req.body
 
-  console.log(`Login attempt for username: ${username}`) // Debug log
-
   if (!username || !password) {
     return res.status(400).json({ message: 'Username and password are required' })
   }

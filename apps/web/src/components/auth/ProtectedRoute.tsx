@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAppSelector } from '@/store/hooks'
+import { ROUTES } from '@/constants/routes'
 
 interface ProtectedRouteProps {
   requiredRole: 'client' | 'admin'
@@ -27,11 +28,11 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ requiredRole }) 
   }
 
   if (!token || !user) {
-    return <Navigate to="/login" state={{ from: location }} replace />
+    return <Navigate to={ROUTES.LOGIN} state={{ from: location }} replace />
   }
 
   if (user.role !== requiredRole) {
-    return <Navigate to="/login" replace />
+    return <Navigate to={ROUTES.LOGIN} replace />
   }
 
   return <Outlet />

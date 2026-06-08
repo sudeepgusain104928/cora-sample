@@ -1,4 +1,5 @@
 import { treatMenu } from './conditions'
+import { createConditionRoute, ROUTES } from '@/constants/routes'
 
 export interface NavLink {
   label: string
@@ -21,7 +22,7 @@ export const primaryNav: NavItem[] = [
     label: 'What We Treat',
     href: '#treat',
     // Built from the conditions data so menu + routing stay in sync.
-    children: treatMenu.map((t) => ({ label: t.label, href: `/condition/${t.slug}` })),
+    children: treatMenu.map((t) => ({ label: t.label, href: createConditionRoute(t.slug) })),
   },
   {
     label: 'How We Can Help',
@@ -82,7 +83,7 @@ export const topNav: NavItem[] = [
   },
   { label: 'Locations', href: '/locations' },
   { label: 'Pay Bill', href: '#pay-bill' },
-  { label: 'Apply Now', href: '/login', highlight: true },
+  { label: 'Apply Now', href: ROUTES.LOGIN, highlight: true },
 ]
 
 export const footerQuickLinks: NavLink[] = [

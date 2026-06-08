@@ -2,14 +2,10 @@ import { useEffect, type FormEvent } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { loginThunk, clearError } from '@/store/slices/authSlice'
+import { ROUTES, ROLE_REDIRECT } from '@/constants/routes'
 
 interface LocationState {
   from?: { pathname: string }
-}
-
-const ROLE_REDIRECT: Record<string, string> = {
-  client: '/client/dashboard',
-  admin: '/admin/dashboard',
 }
 
 export default function LoginPage() {
@@ -21,7 +17,7 @@ export default function LoginPage() {
   // If already logged in (e.g. back button after login), redirect immediately
   useEffect(() => {
     if (token && user) {
-      navigate(ROLE_REDIRECT[user.role] ?? '/', { replace: true })
+      navigate(ROLE_REDIRECT[user.role] ?? ROUTES.HOME, { replace: true })
     }
   }, [token, user, navigate])
 
@@ -44,7 +40,7 @@ export default function LoginPage() {
 
     if (loginThunk.fulfilled.match(result)) {
       const role = result.payload.user.role
-      navigate(from ?? ROLE_REDIRECT[role] ?? '/', { replace: true })
+      navigate(from ?? ROLE_REDIRECT[role] ?? ROUTES.HOME, { replace: true })
     }
     // On rejection: authSlice sets state.auth.error — no try/catch needed
   }

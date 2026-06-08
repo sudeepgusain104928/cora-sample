@@ -32,7 +32,7 @@ describe('locationSlice', () => {
 
   it('fetchLocations.rejected sets error', async () => {
     server.use(
-      http.get('http://localhost:5000/api/locations', () =>
+      http.get('http://localhost/api/locations', () =>
         HttpResponse.json({ message: 'Server error' }, { status: 500 }),
       ),
     )

@@ -42,5 +42,27 @@ export { default as DashboardLayout, type DashboardLayoutProps } from './compone
 
 export { default as PortalCard, type PortalCardProps } from './components/PortalCard'
 
+// ─── Icons ────────────────────────────────────────────────────────────────────
+export {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
+  SearchIcon,
+  LocateIcon,
+  MapPinIcon,
+  XIcon,
+  CheckIcon,
+  QuoteIcon,
+  RunnerIcon,
+  CalendarIcon,
+  CirclePlusIcon,
+  ShieldCheckIcon,
+  CreditCardIcon,
+  PhysicalTherapyIcon,
+  OccupationalTherapyIcon,
+  SpeechTherapyIcon,
+} from './icons'
+export type { IconProps, RunnerIconProps } from './icons'
+
 // ─── Shared types ─────────────────────────────────────────────────────────────
 export type { Clinic, Leader, UserRole } from './types'
