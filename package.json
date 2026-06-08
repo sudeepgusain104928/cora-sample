@@ -19,7 +19,10 @@
     "test:server": "nx test @cora/server",
     "test:ui": "nx test @cora/ui",
     "storybook": "nx storybook @cora/ui",
-    "lint": "nx run-many -t lint"
+    "lint": "nx run-many -t lint",
+    "version:patch": "npm version patch --workspace=apps/web",
+    "version:minor": "npm version minor --workspace=apps/web",
+    "version:major": "npm version major --workspace=apps/web"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
