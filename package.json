@@ -15,6 +15,7 @@
     "build:all": "nx run-many -t build",
     "start": "nx start @cora/server",
     "test": "nx run-many -t test",
+    "test:coverage": "nx run-many -t test:coverage",
     "test:web": "nx test @cora/web",
     "test:server": "nx test @cora/server",
     "test:ui": "nx test @cora/ui",

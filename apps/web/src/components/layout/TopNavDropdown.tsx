@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { NavChild } from '../../data/navigation'
 import { ChevronDownIcon, ChevronRightIcon } from '@cora/ui'
 
@@ -28,12 +29,19 @@ export default function TopNavDropdown({
     ? 'text-cora-orange hover:text-orange-400'
     : 'text-white/90 hover:text-cora-teal'
 
+  const NavAnchor = ({ href, className, children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) =>
+    href.startsWith('/') ? (
+      <Link to={href} className={className} {...(rest as object)}>{children}</Link>
+    ) : (
+      <a href={href} className={className} {...rest}>{children}</a>
+    )
+
   if (!hasMenu) {
     return (
       <li>
-        <a href={href} className={`font-medium transition-colors ${triggerClass}`}>
+        <NavAnchor href={href} className={`font-medium transition-colors ${triggerClass}`}>
           {label}
-        </a>
+        </NavAnchor>
       </li>
     )
   }
@@ -44,7 +52,7 @@ export default function TopNavDropdown({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <a
+      <NavAnchor
         href={href}
         className={`flex items-center gap-1 font-medium transition-colors ${triggerClass}`}
         aria-expanded={open}
@@ -52,7 +60,7 @@ export default function TopNavDropdown({
       >
         {label}
         <ChevronDownIcon className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
-      </a>
+      </NavAnchor>
 
       {open && (
         <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3">
@@ -66,13 +74,13 @@ export default function TopNavDropdown({
                 const itemHref = typeof item === 'string' ? '#' : item.href
                 return (
                 <li key={label}>
-                  <a
+                  <NavAnchor
                     href={itemHref}
                     className="group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-cora-navy transition-colors hover:bg-cora-sky hover:text-cora-blue"
                   >
                     {label}
                     <ChevronRightIcon className="h-4 w-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
-                  </a>
+                  </NavAnchor>
                 </li>
                 )
               })}
