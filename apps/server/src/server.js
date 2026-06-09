@@ -22,7 +22,7 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true })
 })
 
-// Routes
+// Routes for authentication, locations, client, and admin
 app.use('/api/auth', authRouter)
 app.use('/api/locations', locationsRouter)
 app.use('/api/client', clientRouter)

@@ -1,6 +1,7 @@
 name: Staging - Server Deploy
 
 on:
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
   push:
     branches:
       - 'release/server-v*' # Triggers ONLY on server release branches
@@ -13,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build Server
         run: |
