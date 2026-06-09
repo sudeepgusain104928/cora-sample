@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterEach, afterAll } from 'vitest'
+import { describe, it, expect, beforeAll, beforeEach, afterEach, afterAll } from 'vitest'
 import { http, HttpResponse } from 'msw'
 import { setupServer } from 'msw/node'
 import { configureStore } from '@reduxjs/toolkit'
@@ -7,6 +7,7 @@ import { defaultHandlers } from '@/test/msw-handlers'
 
 const server = setupServer(...defaultHandlers)
 beforeAll(() => server.listen())
+beforeEach(() => localStorage.clear())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
@@ -32,7 +33,7 @@ describe('authSlice', () => {
 
   it('loginThunk.rejected sets error', async () => {
     server.use(
-      http.post('http://localhost:5000/api/auth/login', () =>
+      http.post('http://localhost/api/auth/login', () =>
         HttpResponse.json({ message: 'Invalid credentials' }, { status: 401 }),
       ),
     )
@@ -53,7 +54,7 @@ describe('authSlice', () => {
 
   it('clearError resets error to null', async () => {
     server.use(
-      http.post('http://localhost:5000/api/auth/login', () =>
+      http.post('http://localhost/api/auth/login', () =>
         HttpResponse.json({ message: 'Bad' }, { status: 401 }),
       ),
     )
@@ -62,5 +63,11 @@ describe('authSlice', () => {
     expect(store.getState().auth.error).toBeTruthy()
     store.dispatch(clearError())
     expect(store.getState().auth.error).toBeNull()
+  })
+
+  it('initialises with null user when localStorage has corrupt JSON', () => {
+    localStorage.setItem('cora_auth_user', 'not-valid-json{{{')
+    const store = makeStore()
+    expect(store.getState().auth.user).toBeNull()
   })
 })

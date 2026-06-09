@@ -36,7 +36,7 @@ const mockLocations = [
 ]
 
 const server = setupServer(
-  http.get('http://localhost:5000/api/locations', () => HttpResponse.json(mockLocations)),
+  http.get('http://localhost/api/locations', () => HttpResponse.json(mockLocations)),
 )
 
 beforeAll(() => server.listen())
@@ -61,6 +61,18 @@ describe('Location flow', () => {
       expect(screen.getByText('Orlando, Florida')).toBeInTheDocument()
       expect(screen.getByText('Tampa, Florida')).toBeInTheDocument()
     })
+  })
+
+  it('renders skeleton cards while loading', () => {
+    renderWithStore(<LocationFinder />, {
+      preloadedState: {
+        locations: { locations: [], loading: true, error: null },
+      },
+    })
+    // SkeletonCard renders animated pulse divs (no text content to query by role)
+    const section = document.querySelector('section#locations')
+    expect(section).toBeInTheDocument()
+    expect(section?.querySelectorAll('.animate-pulse')).toHaveLength(3)
   })
 
   it('renders error message when API fails', async () => {

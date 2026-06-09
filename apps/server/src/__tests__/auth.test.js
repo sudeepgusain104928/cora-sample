@@ -1,6 +1,14 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
+import jwt from 'jsonwebtoken'
 import request from 'supertest'
 import app from '../server.js'
+
+// Must match the secret loaded from .env by the server
+const JWT_SECRET = process.env.JWT_SECRET
+
+function makeToken(payload) {
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' })
+}
 
 describe('POST /api/auth/login', () => {
   it('returns 200 with token for valid admin credentials', async () => {
@@ -82,5 +90,40 @@ describe('POST /api/auth/register', () => {
       .post('/api/auth/register')
       .send({ username: 'onlyuser' })
     expect(res.status).toBe(400)
+  })
+})
+
+describe('GET /api/auth/me', () => {
+  let adminToken
+
+  beforeAll(async () => {
+    const res = await request(app)
+      .post('/api/auth/login')
+      .send({ username: 'admin', password: 'password123' })
+    adminToken = res.body.token
+  })
+
+  it('returns 200 with user profile for valid token', async () => {
+    const res = await request(app)
+      .get('/api/auth/me')
+      .set('Authorization', `Bearer ${adminToken}`)
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveProperty('username', 'admin')
+    expect(res.body).toHaveProperty('role', 'admin')
+    expect(res.body).not.toHaveProperty('passwordHash')
+  })
+
+  it('returns 401 with no token', async () => {
+    const res = await request(app).get('/api/auth/me')
+    expect(res.status).toBe(401)
+  })
+
+  it('returns 404 when user in token does not exist', async () => {
+    const ghostToken = makeToken({ id: 'nonexistent-id', username: 'ghost', role: 'client' })
+    const res = await request(app)
+      .get('/api/auth/me')
+      .set('Authorization', `Bearer ${ghostToken}`)
+    expect(res.status).toBe(404)
+    expect(res.body.message).toBe('User not found')
   })
 })
