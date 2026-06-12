@@ -1,0 +1,26 @@
+name: Deploy — Staging
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
+
+  deploy-server:
+    name: Deploy Server (Staging)
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      - name: Trigger Render staging server deploy
+        run: curl -fsSL -X POST "${{ secrets.RENDER_STAGING_BACKEND_HOOK }}"
+
+  deploy-web:
+    name: Deploy Web (Staging)
+    runs-on: ubuntu-latest
+    needs: deploy-server
+    steps:
+      - name: Trigger Render staging web deploy
+        run: curl -fsSL -X POST "${{ secrets.RENDER_STAGING_WEB_HOOK }}"

@@ -36,7 +36,7 @@ const mockLocations = [
 ]
 
 const server = setupServer(
-  http.get('http://localhost/api/locations', () => HttpResponse.json(mockLocations)),
+  http.get('/api/locations', () => HttpResponse.json(mockLocations)),
 )
 
 beforeAll(() => server.listen())

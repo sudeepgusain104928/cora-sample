@@ -33,7 +33,7 @@ describe('authSlice', () => {
 
   it('loginThunk.rejected sets error', async () => {
     server.use(
-      http.post('http://localhost/api/auth/login', () =>
+      http.post('/api/auth/login', () =>
         HttpResponse.json({ message: 'Invalid credentials' }, { status: 401 }),
       ),
     )
@@ -54,7 +54,7 @@ describe('authSlice', () => {
 
   it('clearError resets error to null', async () => {
     server.use(
-      http.post('http://localhost/api/auth/login', () =>
+      http.post('/api/auth/login', () =>
         HttpResponse.json({ message: 'Bad' }, { status: 401 }),
       ),
     )

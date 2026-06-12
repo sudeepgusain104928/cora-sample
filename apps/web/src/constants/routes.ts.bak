@@ -7,7 +7,6 @@ export const ROUTES = {
   LOGIN: '/login',
   CLIENT_DASHBOARD: '/client/dashboard',
   ADMIN_DASHBOARD: '/admin/dashboard',
-  LEADERSHIP: '/leadership',
 } as const
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES]

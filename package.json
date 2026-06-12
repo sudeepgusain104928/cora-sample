@@ -26,6 +26,7 @@
     "version:major": "npm version major --workspace=apps/web"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "concurrently": "^9.2.1",
     "esbuild": "0.28.0",
     "nx": "^22.7.5",
