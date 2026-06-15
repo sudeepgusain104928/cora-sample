@@ -25,13 +25,18 @@
     "test:e2e:report": "playwright show-report tests/e2e/report",
     "version:patch": "npm version patch --workspace=apps/web",
     "version:minor": "npm version minor --workspace=apps/web",
-    "version:major": "npm version major --workspace=apps/web"
+    "version:major": "npm version major --workspace=apps/web",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "concurrently": "^9.2.1",
     "esbuild": "0.28.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "nx": "^22.7.5",
+    "prettier": "^3.8.4",
     "vite": "8.0.16"
   },
   "dependencies": {
