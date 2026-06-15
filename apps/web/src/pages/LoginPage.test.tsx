@@ -36,7 +36,7 @@ describe('LoginPage', () => {
 
   it('shows error message on invalid credentials', async () => {
     server.use(
-      http.post('http://localhost:5000/api/auth/login', () =>
+      http.post('/api/auth/login', () =>
         HttpResponse.json({ message: 'Invalid username or password' }, { status: 401 }),
       ),
     )

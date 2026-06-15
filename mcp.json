@@ -1,0 +1,25 @@
+{
+  "servers": {
+    "atlassian-rovo-mcp": {
+      "type": "http",
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "headers": {
+        "Authorization": "${input:atlassianAuth}",
+        "X-Atlassian-Site": "${input:atlassianSite}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "atlassianAuth",
+      "type": "promptString",
+      "description": "Atlassian API auth header value. Format: 'Basic <base64(email:api_token)>'. Get your API token at https://id.atlassian.com/manage-profile/security/api-tokens",
+      "password": true
+    },
+    {
+      "id": "atlassianSite",
+      "type": "promptString",
+      "description": "Your Atlassian site URL, e.g. https://your-company.atlassian.net"
+    }
+  ]
+}

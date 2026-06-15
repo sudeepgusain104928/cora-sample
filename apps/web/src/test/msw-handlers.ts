@@ -1,13 +1,13 @@
 import { http, HttpResponse } from 'msw'
 
 export const defaultHandlers = [
-  http.post('http://localhost/api/auth/login', () =>
+  http.post('/api/auth/login', () =>
     HttpResponse.json({
       token: 'fake-token-admin',
       user: { id: '1', username: 'admin', name: 'Admin User', role: 'admin' },
     }),
   ),
-  http.get('http://localhost/api/locations', () =>
+  http.get('/api/locations', () =>
     HttpResponse.json([
       {
         id: '1',

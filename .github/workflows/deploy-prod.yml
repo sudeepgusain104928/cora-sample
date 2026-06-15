@@ -1,0 +1,25 @@
+name: Deploy — Production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
+
+  deploy-server:
+    name: Deploy Server (Production)
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      - name: Trigger Render production server deploy
+        run: curl -fsSL -X POST "${{ secrets.RENDER_PROD_BACKEND_HOOK }}"
+
+  deploy-web:
+    name: Deploy Web (Production)
+    runs-on: ubuntu-latest
+    needs: deploy-server
+    steps:
+      - name: Trigger Render production web deploy
+        run: curl -fsSL -X POST "${{ secrets.RENDER_PROD_WEB_HOOK }}"

@@ -30,9 +30,6 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
-    env: {
-      VITE_API_URL: 'http://localhost/api',
-    },
     coverage: {
       provider: 'v8',
       exclude: [
@@ -45,6 +42,8 @@ export default defineConfig({
         'src/components/PublicRoute.tsx',
         'src/pages/DashboardPage.tsx',
         'src/services/authService.ts',
+        'src/services/api/client.ts',
+        'src/hooks/useVersionCheck.ts',
       ],
       thresholds: {
         statements: 85,

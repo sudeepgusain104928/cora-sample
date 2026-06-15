@@ -1,6 +1,13 @@
 import { describe, it, expect, beforeAll } from 'vitest'
+import jwt from 'jsonwebtoken'
 import request from 'supertest'
 import app from '../server.js'
+
+const JWT_SECRET = process.env.JWT_SECRET ?? 'dev-secret'
+
+function makeClientToken(payload) {
+  return jwt.sign({ role: 'client', ...payload }, JWT_SECRET, { expiresIn: '1h' })
+}
 
 let clientToken, adminToken
 
@@ -38,5 +45,14 @@ describe('GET /api/client/me', () => {
       .get('/api/client/me')
       .set('Authorization', `Bearer ${adminToken}`)
     expect(res.status).toBe(403)
+  })
+
+  it('returns 404 when client user in token does not exist', async () => {
+    const ghostToken = makeClientToken({ id: 'nonexistent-id', username: 'ghost' })
+    const res = await request(app)
+      .get('/api/client/me')
+      .set('Authorization', `Bearer ${ghostToken}`)
+    expect(res.status).toBe(404)
+    expect(res.body.message).toBe('User not found')
   })
 })

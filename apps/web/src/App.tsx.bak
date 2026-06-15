@@ -39,7 +39,6 @@ const router = createBrowserRouter([
       { path: ROUTES.CONDITION, element: routeSuspense(<ConditionPage />) },
       { path: ROUTES.WHAT_WE_TREAT, element: routeSuspense(<WhatWeTreat />) },
       { path: ROUTES.HOW_WE_CAN_HELP, element: routeSuspense(<HowWeCanHelp />) },
-      { path: ROUTES.LEADERSHIP, element: routeSuspense(<LeadershipPage />) },
       { path: ROUTES.LOGIN, element: routeSuspense(<LoginPage />) },
     ],
   },

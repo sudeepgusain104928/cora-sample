@@ -7,7 +7,7 @@ import { renderWithStore } from '@/test/test-utils'
 import LoginPage from '@/pages/LoginPage'
 
 const server = setupServer(
-  http.post('http://localhost:5000/api/auth/login', async ({ request }) => {
+  http.post('/api/auth/login', async ({ request }) => {
     const { username } = (await request.json()) as { username: string; password: string }
     if (username === 'admin') {
       return HttpResponse.json({
