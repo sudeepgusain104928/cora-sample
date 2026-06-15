@@ -21,6 +21,8 @@
     "test:ui": "nx test @cora/ui",
     "storybook": "nx storybook @cora/ui",
     "lint": "nx run-many -t lint",
+    "test:e2e": "playwright test",
+    "test:e2e:report": "playwright show-report tests/e2e/report",
     "version:patch": "npm version patch --workspace=apps/web",
     "version:minor": "npm version minor --workspace=apps/web",
     "version:major": "npm version major --workspace=apps/web"
